@@ -1,0 +1,1722 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gingold Business Advisors</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /*Responsive*/
+        
+        /* Global Styles */
+body {
+  background-color: #fff;
+  color: #2d4718; /* Dark green text */
+  font-family: 'Poppins', sans-serif;
+  opacity: 0;
+  transition: opacity 0.5s ease-in;
+
+}
+
+body.fade-in-loaded {
+  opacity: 1;
+}
+
+section {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+
+section.fade-in {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+
+/* Headings - Adaptive */
+h1 {
+  font-size: clamp(2rem, 4vw, 4.5rem);
+  line-height: 1.2;
+}
+
+h2 {
+  font-size: clamp(1.5rem, 3vw, 3.5rem);
+}
+
+p {
+  font-size: clamp(1rem, 1.2vw, 1.4rem);
+  line-height: 1.6;
+}
+
+@media (max-width: 400px) {
+  h1 {
+    font-size: clamp(2rem, 6vw, 3.5rem);
+  }
+  p {
+    font-size: clamp(1rem, 1.5vw, 1.2rem);
+  }
+}
+
+/* Header */
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background: #fdd03e; /* Yellow behind logo, then green */
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 40px;
+  z-index: 1000;
+  box-shadow: 0 4px 15px rgba(45, 71, 24, 0.4); /* Soft green glow */
+}
+
+/* Logo */
+.header-logo img {
+  height: 60px;
+}
+
+/* Nav */
+.nav-links {
+  display: flex;
+  gap: 30px;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.nav-links li {
+  list-style: none;
+}
+
+.nav-links a {
+  text-decoration: none;
+  color: #2d4718;
+  font-weight: 500;
+  transition: color 0.3s ease-in-out;
+}
+
+.nav-links a:hover {
+  color: #00448d; /* Blue hover */
+}
+
+/* CTA Button */
+.chat-btn {
+  background: #2d4718;
+  color: #fdd03e;
+  padding: 10px 18px;
+  font-weight: 600;
+  border-radius: 50px;
+  text-decoration: none;
+  transition: all 0.3s ease-in-out;
+  border: 2px solid #2d4718;
+}
+
+.chat-btn:hover {
+  background: #fff;
+  color: #00448d;
+  box-shadow: 0 0 15px rgba(0, 68, 141, 0.4);
+}
+
+/* Mobile Menu */
+.menu-toggle {
+  display: none;
+  font-size: 24px;
+  color: #2d4718;
+  cursor: pointer;
+  position: absolute;
+  right: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+@media (max-width: 850px) {
+  .menu-toggle {
+    display: block;
+    margin-left: 120px;
+  }
+
+  .nav-links {
+    display: none;
+    flex-direction: column;
+    position: absolute;
+    top: 70px;
+    right: 0;
+    width: 100%;
+    background: rgba(45, 71, 24, 0.9);
+    text-align: center;
+    padding: 15px 0;
+  }
+
+  .nav-links.active {
+    display: flex;
+  }
+
+  .chat-btn {
+    font-size: 14px;
+    padding: 8px 15px;
+    margin-right: 20px;
+  }
+}
+
+/* Hero */
+.hero {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  text-align: center;
+  padding: 7rem 2rem 2rem 2rem;
+  background-color: #fff;
+  color: #2d4718;
+}
+
+@media (min-width: 1025px) {
+  .hero {
+    flex-direction: row;
+    text-align: left;
+  }
+}
+
+
+/* Hero Image Angled (placeholder) */
+.hero-image-container {
+  position: relative;
+  width: 100%;
+  max-width: 500px;
+  min-height: 400px; /* NEW */
+  height: auto;
+  margin-right: 2rem;
+}
+
+
+.angled-image {
+  background: url('./assets/familybusiness.png') no-repeat center center/cover;
+  width: 100%;
+  height: 100%;
+  transform: rotate(-3deg);
+  border-radius: 20px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+}
+
+@media (max-width: 1025px) {
+  .hero {
+  flex-direction: column;
+  text-align: center;
+}
+
+.hero-image-container {
+  margin: 0 auto 2rem auto;
+  min-height: auto;
+  max-width: 100%;
+  aspect-ratio: 4 / 3;
+}
+
+.angled-image {
+  transform: none;
+}
+}
+
+
+/* Buttons */
+.btn {
+  display: inline-block;
+  padding: 12px 24px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  border: 2px solid #2d4718;
+  background: transparent;
+  color: #2d4718;
+  border-radius: 50px;
+  transition: all 0.3s ease-in-out;
+}
+
+.btn:hover {
+  background: #2d4718;
+  color: #fff;
+}
+
+.btn-secondary {
+  border-color: #00448d;
+  color: #00448d;
+}
+
+.btn-secondary:hover {
+  background: #00448d;
+  color: #fff;
+}
+
+/* Hook Section */
+.section.hook {
+  background-color: #fdfdfd;
+  color: #142d14;
+  padding: 5rem 2rem;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh; /* Ensure it fills the screen */
+}
+
+/* Main Heading */
+.section.hook h2 {
+  font-size: clamp(2rem, 5vw, 3rem);
+  font-weight: 700;
+  margin-bottom: 1.2rem;
+  line-height: 1.3;
+  max-width: 900px;
+  text-align: center; /* Ensure the heading is centered */
+  margin: 0 auto; /* Center the heading horizontally */
+  transition: font-size 0.3s ease;
+}
+
+/* Paragraph */
+.section.hook p {
+  font-size: clamp(1rem, 1.5vw, 1.25rem);
+  line-height: 1.6;
+  max-width: 750px;
+  margin: 0 auto;
+  color: #333;
+  margin-bottom: 1rem;
+  text-align: center; /* Ensure the paragraph is centered */
+}
+
+/* CTA Button */
+.section.hook .cta-btn {
+  padding: 12px 24px;
+  font-size: 1rem;
+  font-weight: 600;
+  background-color: #2d4718;
+  color: white;
+  text-transform: uppercase;
+  border-radius: 50px;
+  text-decoration: none;
+  transition: background-color 0.3s ease-in-out;
+}
+
+.section.hook .cta-btn:hover {
+  background-color: #142d14;
+}
+
+/* Mobile Adjustments */
+@media (max-width: 768px) {
+  .section.hook {
+    padding: 3rem 1.5rem;
+  }
+
+  .section.hook h2 {
+    font-size: clamp(1.8rem, 6vw, 2.6rem);
+    margin-bottom: 1rem;
+  }
+
+  .section.hook p {
+    font-size: clamp(1rem, 4vw, 1.1rem);
+    max-width: 100%;
+  }
+
+  .section.hook .cta-btn {
+    padding: 10px 20px;
+    font-size: 0.9rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .section.hook {
+    padding: 2.5rem 1rem;
+  }
+
+  .section.hook h2 {
+    font-size: clamp(1.5rem, 7vw, 2.4rem);
+    margin-bottom: 0.8rem;
+  }
+
+  .section.hook p {
+    font-size: clamp(1rem, 5vw, 1rem);
+    max-width: 100%;
+  }
+
+  .section.hook .cta-btn {
+    padding: 8px 16px;
+    font-size: 0.8rem;
+  }
+}
+
+/* About Section Styling */
+.about-section {
+    background: linear-gradient(135deg, #fdfdfd, #f6f9f4);
+    color: #2d4718;
+    padding: 5rem 2rem;
+    position: relative;
+    overflow: hidden;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+
+/* Scroll Fade-In Activation */
+.about-section.fade-in {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Large Soft Background SVG */
+.about-section::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: url('./assets/hero-bg.png') center center no-repeat;
+    background-size: 80%;
+    opacity: 0.035;
+    z-index: 0;
+    pointer-events: none;
+    filter: blur(1px);
+}
+
+/* Container */
+.about-section .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 1;
+}
+
+/* About Text Card */
+.about-section .about-text {
+    max-width: 800px;
+    background-color: rgba(255, 255, 255, 0.85);
+    padding: 2rem 2.5rem;
+    border-radius: 20px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.05);
+    backdrop-filter: blur(6px);
+    transition: transform 0.3s ease;
+}
+
+.about-section .about-text:hover {
+    transform: translateY(-5px);
+}
+
+/* Heading */
+.about-section h2 {
+    font-size: 2.75rem;
+    font-weight: 700;
+    color: #142d14;
+    margin-bottom: 1rem;
+    position: relative;
+}
+
+.about-section h2::after {
+    content: '';
+    display: block;
+    width: 60px;
+    height: 4px;
+    background-color: #fdd03e;
+    margin-top: 10px;
+    border-radius: 2px;
+}
+
+/* Paragraph */
+.about-section p {
+    font-size: 1.125rem;
+    line-height: 1.9;
+    color: #3a5a2a;
+    margin-bottom: 1.5rem;
+}
+/* CTA Button */
+.cta-btn {
+  background: #2d4718;
+  color: #fdd03e;
+  padding: 10px 18px;
+  font-weight: 900;
+  border-radius: 50px;
+  text-decoration: none;
+  transition: all 0.3s ease-in-out;
+  border: 2px solid #2d4718;
+}
+
+.cta-btn:hover {
+  background: #fff;
+  color: #00448d;
+  box-shadow: 0 0 15px rgba(0, 68, 141, 0.4);
+}
+
+@media (max-width: 768px) {
+    .about-section {
+        padding: 3rem 1.5rem; /* Less padding on mobile */
+    }
+
+    .about-section .about-text {
+        max-width: 90%; /* Full width on mobile for readability */
+        padding: 1.2rem; /* More compact padding */
+    }
+
+    .about-section h2 {
+        font-size: 2rem; /* Smaller heading */
+    }
+
+    .about-section p {
+        font-size: 1rem; /* Adjust paragraph font size */
+    }
+
+    .cta-btn {
+        padding: 8px 14px; /* Adjust CTA button size */
+        font-size: 1rem; /* Smaller button text */
+    }
+}
+
+/* For Extra Small Screens (Portrait Mobile) */
+@media (max-width: 480px) {
+    .about-section {
+        padding: 2.5rem 1rem; /* Minimal padding */
+    }
+
+    .about-section .about-text {
+        max-width: 100%; /* Full width text card */
+        padding: 1rem; /* Further reduced padding */
+    }
+
+    .about-section h2 {
+        font-size: 1.75rem; /* Smaller font size */
+    }
+
+    .about-section p {
+        font-size: 0.95rem; /* Reduced paragraph font size */
+    }
+
+    .cta-btn {
+        padding: 6px 12px; /* Even smaller button on mobile */
+        font-size: 0.9rem; /* Smaller button text */
+    }
+}
+
+/* Featured Articles Section */
+.feature-highlight {
+  font-size: 1.25rem;
+  font-weight: 200;
+  font-style: italic;
+  color: #142d14;
+  margin-top: 1rem;
+  margin-bottom: 2rem;
+  line-height: 1.6;
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.highlight-link {
+  color: #00448d;
+  font-weight: 700;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.highlight-link:hover {
+  color: #fdd03e;
+}
+
+
+
+
+
+
+
+/* services styling*/
+.services-section {
+  padding: 6rem 2rem;
+  background: #fdfdfd;;
+  position: relative;
+}
+
+.section-title {
+  font-size: clamp(2rem, 5vw, 3rem);
+  font-weight: 700;
+  padding-bottom: 30px;
+  line-height: 1.3;
+  max-width: 900px;
+  text-align: center; /* Ensure the heading is centered */
+  margin: 0 auto; /* Center the heading horizontally */
+  transition: font-size 0.3s ease;
+}
+
+.packages-grid {
+  display: grid;
+  gap: 2rem;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); /* Adaptive layout */
+}
+
+.package-card {
+  cursor: pointer;
+  transition: transform 0.4s ease, box-shadow 0.4s ease, border-radius 0.3s ease; /* Smooth transitions */
+  overflow: hidden;
+  background-color: #fff;
+  border-radius: 12px; /* Rounded corners */
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08); /* Soft shadow */
+  position: relative;
+}
+
+.package-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 12px 36px rgba(0, 0, 0, 0.12);
+  border-radius: 16px; /* Slight increase in border radius on hover */
+}
+
+.card-header {
+  padding: 2rem;
+  border-radius: 12px 12px 0 0; /* Rounded top corners */
+  position: relative;
+  z-index: 2;
+  background-image: url('./assets/services-bg.png'); /* Your background image for the yellow card */
+  background-size: cover; /* Ensure the image covers the entire card header */
+  background-position: center center; /* Center the image */
+  background-repeat: no-repeat; /* Prevent the image from repeating */
+}
+
+.card-header h3 {
+  margin: 0;
+  font-size: 1.6rem;
+  font-weight: 600;
+  color:#fdd03e;
+}
+
+.card-header .subtitle {
+  font-size: 1rem;
+  color: white;
+  font-style: italic;
+  display: block;
+  margin-top: 0.5rem;
+}
+
+.card-header .clicktoexpand {
+  font-size: 0.875rem;       /* small text */
+  font-style: italic;
+  font-weight: 400;
+  color: #666;               /* soft grey */
+  text-align: left;
+  margin-top: 1rem;
+}
+
+
+.card-content {
+  padding: 2rem;
+  max-height: 0;
+  overflow: hidden;
+  opacity: 0;
+  transform: translateY(-20px);
+  transition: all 0.4s ease;
+  background-color: rgba(255, 255, 255, 0.9); /* Slight transparency to let image show through */
+  border-radius: 0 0 12px 12px; /* Rounded bottom corners */
+}
+
+.package-card.expanded .card-content {
+  max-height: 1000px;
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.card-content ul {
+  margin: 1rem 0;
+  padding-left: 1.2rem;
+}
+
+.card-content li {
+  font-size: 1.1rem;
+  color: #333;
+}
+
+.card-content hr {
+  margin: 1.5rem 0;
+  border: none;
+  border-top: 1px solid #eee;
+}
+
+.services-note {
+  font-size: 0.9rem;
+  font-style: italic;
+  font-weight: 400;
+  color: #555;
+  margin-top: 2rem;
+  text-align: center;
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .card-header h3 {
+    font-size: 1.4rem;
+  }
+
+  .card-header .clicktoexpand {
+    font-size: 1.1rem;
+  }
+
+  .card-content ul {
+    padding-left: 1rem;
+  }
+   .packages-grid {
+     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+   }
+}
+
+/* How We Work Section */
+.how-we-work {
+  background-color: #fdfdfd;
+  padding: 6rem 2rem;
+  position: relative;
+}
+
+.how-we-work .container {
+  max-width: 1200px;
+  margin: 0 auto;
+  position: relative;
+}
+
+.work-steps {
+  position: relative;
+  margin-left: 2rem;
+  border-left: 3px solid #fdd03e;
+  padding-left: 2rem;
+}
+
+.work-steps li {
+  position: relative;
+  padding: 2rem 2rem 2rem 3rem;
+  margin-bottom: 2rem;
+  background-color: #ffffff;
+  border-radius: 1rem;
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.04);
+  transition: transform 0.3s ease;
+}
+
+.work-steps li:hover {
+  transform: translateY(-5px);
+}
+
+/* Alternate background for visual rhythm */
+.work-steps li:nth-child(even) {
+  background-color: #f4f6f3;
+}
+
+/* Step indicator circle */
+.work-steps li::before {
+  content: attr(data-step); /* This pulls the number from the data-step attribute */
+  position: absolute;
+  left: -2.6rem;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 32px; /* Larger nodes */
+  height: 32px; /* Larger nodes */
+  background-color: #2d4718; /* Dark green */
+  border-radius: 50%;
+  color: white; /* White text color */
+  font-size: 1.2rem; /* Adjust font size */
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2;
+}
+
+.example {
+  display: block;
+  margin-top: 0.5rem;
+  font-style: italic;
+  color: #556b45;
+  font-size: 0.95rem;
+}
+
+.optional-addon {
+  margin: 3rem auto 0;
+  padding: 2rem;
+  background: hsl(210, 100%, 94%);
+  border-left: 5px solid #00448d;
+  border-radius: 16px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.05);
+  max-width: 900px;
+}
+
+.optional-addon h4 {
+  margin: 0 0 0.5rem;
+  color: #2d4718;
+  font-size: 1.2rem;
+}
+
+.optional-addon p {
+  margin: 0;
+  font-size: 1rem;
+  color: #444;
+}
+
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .work-steps {
+    margin-left: 1rem;
+    padding-left: 1.5rem;
+  }
+
+  .work-steps li {
+    padding: 1.5rem 1rem 1.5rem 2rem;
+  }
+
+  .work-steps li::before {
+    left: -1.6rem;
+  }
+
+  .optional-addon {
+    padding: 1.5rem;
+  }
+
+  .optional-addon h4 {
+    font-size: 1.05rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .how-we-work .section-title {
+    font-size: 1.8rem;
+  }
+
+  .work-steps li {
+    padding: 1.2rem 1rem;
+  }
+}
+
+/* Results Section Styling */
+.results {
+  padding: 6rem 2rem;
+  background-color: #f9fafb;
+  text-align: center;
+}
+
+.results h2 {
+  font-size: clamp(2rem, 5vw, 3rem);
+  font-weight: 700;
+  padding-bottom: 30px;
+  line-height: 1.3;
+  max-width: 900px;
+  text-align: center; /* Ensure the heading is centered */
+  margin: 0 auto; /* Center the heading horizontally */
+  transition: font-size 0.3s ease;
+}
+
+.results-list {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 3rem;
+}
+
+.results-list li {
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: #4d4d4d;
+  line-height: 1.8;
+  max-width: 400px;
+  padding: 1rem 2rem;
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  opacity: 0;
+  transform: translateY(20px);
+}
+
+.results-list li strong {
+  font-size: 1.5rem;
+  color: #00448d; /* Accent color for results */
+  font-weight: bold;
+}
+
+.results-list li.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.results-list li:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 12px 36px rgba(0, 0, 0, 0.1);
+}
+
+/* Fade-in animation on scroll */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* When an item becomes visible, we trigger fade-in */
+.results-list li.visible {
+  animation: fadeIn 0.6s ease-out forwards;
+}
+
+@media (max-width: 768px) {
+  .results h2 {
+    font-size: 2rem;
+  }
+
+  .results-list {
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  .results-list li {
+    max-width: 100%;
+    padding: 1rem;
+  }
+}
+
+/* Testimonials Section Styling */
+.testimonials {
+  padding: 6rem 2rem;
+  background-color: #fdfdfd;
+}
+
+.section-title {
+  font-size: clamp(2rem, 5vw, 3rem);
+  font-weight: 700;
+  margin-bottom: 1.2rem;
+  line-height: 1.3;
+  max-width: 900px;
+  text-align: center; /* Ensure the heading is centered */
+  margin: 0 auto; /* Center the heading horizontally */
+  transition: font-size 0.3s ease;
+}
+
+.testimonials-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 2rem;
+}
+
+.testimonial-card {
+  background: #ffffff;
+  border-radius: 16px;
+  padding: 2.5rem;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.07);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+  opacity: 0;
+  transform: translateY(20px);
+}
+
+.testimonial-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.1);
+}
+
+.testimonial-card.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.quote {
+  font-size: 1.2rem;
+  color: #333;
+  font-style: italic;
+  margin-bottom: 2rem;
+  line-height: 1.7;
+}
+
+.author {
+  text-align: left;
+}
+
+.author .name {
+  font-weight: 700;
+  font-size: 1.1rem;
+  color: #2d4718;
+  display: block;
+}
+
+.author .title {
+  font-size: 0.95rem;
+  color: #6c6c6c;
+}
+
+/* Fade-in on scroll */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+  .quote {
+    font-size: 1.05rem;
+  }
+
+  .section-title {
+    font-size: 2rem;
+  }
+
+  .author .name {
+    font-size: 1rem;
+  }
+
+  .author .title {
+    font-size: 0.9rem;
+  }
+}
+
+
+/* FAQ Section */
+.faq {
+  background-color: #fdfdfd;
+  padding: 5rem 2rem;
+  position: relative;
+}
+
+.faq h2 {
+  font-size: clamp(2rem, 5vw, 3rem);
+  font-weight: 700;
+  line-height: 1.3;
+  max-width: 900px;
+  text-align: center; /* Ensure the heading is centered */
+  margin: 0 auto; /* Center the heading horizontally */
+  transition: font-size 0.3s ease;
+  margin-bottom: 3rem;
+}
+
+.faq-item {
+  margin-bottom: 1.5rem;
+  background-color: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.faq-question {
+  display: block;
+  width: 100%;
+  padding: 1.5rem;
+  background-color: #f9f9f9;
+  color: #2d4718;
+  font-size: 1.2rem;
+  font-weight: 600;
+  text-align: left;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.faq-question:hover {
+  background-color: #fdd03e; /* Hover effect to change color */
+}
+
+.faq-answer {
+  padding: 1.5rem;
+  display: none; /* Initially hidden */
+  background-color: #2d4718;
+  border-top: 1px solid #eee;
+  font-size: 1.1rem;
+  color: whitesmoke;
+  border-bottom-left-radius: 8px;
+  border-bottom-right-radius: 8px;
+  transition: all 0.3s ease-in-out;
+}
+
+/* Add subtle animation for expanding the answers */
+.faq-item.open .faq-answer {
+  display: block;
+  max-height: 1000px;
+  opacity: 1;
+  padding: 1.5rem;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .faq h2 {
+    font-size: 2rem;
+  }
+
+  .faq-question {
+    font-size: 1rem;
+    padding: 1rem;
+  }
+
+  .faq-answer {
+    padding: 1rem;
+    font-size: 1rem;
+  }
+}
+
+
+
+/* === CTA Section === */
+.cta-section {
+  background-color: #fdfdfd;
+  color: #142d14;
+  padding: 5rem 2rem;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh; /* Ensure it fills the screen */
+}
+
+.cta-section h2 {
+  font-size: clamp(2rem, 5vw, 3rem);
+  font-weight: 700;
+  margin-bottom: 1.2rem;
+  line-height: 1.3;
+  max-width: 900px;
+  text-align: center; /* Ensure the heading is centered */
+  margin: 0 auto; /* Center the heading horizontally */
+  transition: font-size 0.3s ease;
+}
+
+.cta-section p {
+  font-size: clamp(1rem, 1.5vw, 1.25rem);
+  line-height: 2;
+  max-width: 750px;
+  margin: 0 auto;
+  color: #333;
+  margin-bottom: 1rem;
+  text-align: center; /* Ensure the paragraph is centered */
+}
+
+.cta-btn {
+  background: #2d4718;
+  color: #fdd03e;
+  padding: 10px 18px;
+  font-weight: 600;
+  border-radius: 50px;
+  text-decoration: none;
+  transition: all 0.3s ease-in-out;
+  border: 2px solid #2d4718;
+}
+
+.cta-btn:hover {
+  background: #fff;
+  color: #00448d;
+  box-shadow: 0 0 15px rgba(0, 68, 141, 0.4);
+}
+
+
+/* === Footer === */
+.footer-bar {
+  background-color: #2d4718; /* Dark Green */
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 40px;
+  box-shadow: 0 -4px 15px rgba(45, 71, 24, 0.4); /* Soft green glow on top */
+  color: #fdd03e; /* Yellow text */
+  flex-wrap: wrap;
+}
+
+.footer-content {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 1rem;
+}
+
+.footer-text {
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: #fdd03e;
+}
+
+.footer-links {
+  display: flex;
+  gap: 1.5rem;
+}
+
+.footer-link {
+  color: #fdd03e;
+  font-weight: 600;
+  text-transform: uppercase;
+  font-size: 0.9rem;
+  position: relative;
+  transition: all 0.3s ease-in-out;
+}
+
+.footer-link::after {
+  content: "";
+  display: block;
+  width: 0;
+  height: 2px;
+  background: #00448d;
+  transition: width 0.3s ease-in-out;
+  margin: auto;
+}
+
+.footer-link:hover::after {
+  width: 100%;
+}
+
+.footer-link:hover {
+  color: #ffffff;
+}
+
+/* Mobile Friendly */
+@media (max-width: 768px) {
+  .footer-content {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .footer-links {
+    flex-direction: column;
+    gap: 0.75rem;
+    margin-top: 10px;
+  }
+}
+
+    </style>
+<body>
+    <!-- Header -->
+    <header class="header">
+      <div class="header-logo">
+        <img src="assets/logo.png" alt="Scott Gingold Logo">
+      </div>
+  
+      <!-- Mobile Menu Toggle -->
+      <div class="menu-toggle" onclick="toggleMenu()">☰</div>
+  
+      <!-- Navigation -->
+      <ul class="nav-links">
+        <li><a href="#services">Solutions</a></li>
+        <li><a href="#how-we-work">How I Work</a></li>
+        <li><a href="#about">Meet Scott</a></li>
+        <li><a href="#results">Success Stories</a></li>
+        <li><a href="#faq">FAQs</a></li>
+      </ul>
+  
+      <!-- Book a Call CTA -->
+      <a  href="https://calendly.com/gingoldadvisors/initial-conversation?month=2025-04" class="chat-btn">Book a Call</a>
+    </header>
+  
+    <!-- Hero Section -->
+    <section class="hero flex flex-col md:flex-row items-center justify-between px-6 md:px-12">
+      <!-- Left: Angled Family Business Image -->
+      <div class="hero-image-container">
+        <img src="assets/familybusiness.png" alt="Family Business" class="angled-image" />
+      </div>      
+  
+      <!-- Right: Hero Text -->
+      <div class="hero-text text-center md:text-left max-w-2xl">
+        <h1 class="text-4xl md:text-6xl font-bold leading-tight">
+          Transform Your Family Business Without the Overwhelm
+        </h1>
+        <p class="mt-4 text-lg">
+          You’ve built something meaningful. Let’s make it thrive without stress, without family tension, and without getting buried in the day-to-day.
+        </p>
+        <div class="mt-6 flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4">
+          <a  href="https://calendly.com/gingoldadvisors/initial-conversation?month=2025-04" class="btn">Get Expert Help</a>
+          <a href="#about" class="btn btn-secondary">Why I Do This</a>
+        </div>
+      </div>
+    </section>
+  
+<!-- Hook Section -->
+<section id="hook" class="section hook">
+    <div class="container">
+      <h2>Running a Family Business Shouldn’t Feel Like a Burden</h2>
+      <p>You’re carrying the weight of legacy, people, and profit and yet, progress feels stuck. I work with family-owned businesses to help you move forward without friction.</p>
+      <a href="https://calendly.com/gingoldadvisors/initial-conversation?month=2025-04" class="cta-btn">Let’s Get Started</a>
+    </div>
+  </section>
+  
+  
+ <!-- About Section -->
+<section id="about" class="about-section py-20 px-6 bg-dark-green text-white">
+  <div class="container mx-auto text-center md:text-left max-w-3xl">
+    <h2 class="text-3xl md:text-4xl font-semibold mb-6">About Scott Gingold</h2>
+    <p class="text-lg leading-relaxed mb-6">
+      I’m Scott Gingold, and I’ve spent over 60 years navigating the challenges and rewards of family businesses.
+      From growing up in one to leading several, I understand the unique hurdles you face.
+    </p>
+    <p class="text-lg leading-relaxed mb-8">
+      Whether it’s resolving family dynamics or developing growth strategies, I’ve worked hands-on to guide businesses to success.
+      Let me help you transform your family business from overwhelmed to empowered.
+    </p>
+    <!-- Featured Articles Section -->
+    <div class="featured-articles">
+      <h3>Featured In</h3>
+      <p class="feature-highlight">
+        As seen in
+        <a href="https://usbusinessnews.com/gingold-advisors-transforming-family-business-dynamics-with-speed-and-precision/"
+           target="_blank" class="highlight-link">U.S. Business News</a>
+        and awarded by
+        <a href="https://bestofbestreview.com/awards/gingold-advisors-best-family-owned-and-operated-business-troubleshooter-and-fixer-award-of-2024"
+           target="_blank" class="highlight-link">Best of Best Review</a>
+        for excellence in family business transformation.
+      </p>
+    </div>
+    <div class="text-center mt-6">
+      <a href="https://calendly.com/gingoldadvisors/initial-conversation?month=2025-04" target="_blank" rel="noopener" class="cta-btn bg-yellow text-dark-green px-6 py-3 rounded-full text-lg font-semibold hover:bg-dark-green hover:text-yellow transition-all duration-300">
+        Let's grow together
+      </a>
+      
+  </div>
+  </div>
+</section>
+
+  
+<section id="services" class="services-section">
+  <div class="container">
+    <h2 class="section-title">Services</h2>
+    <div class="packages-grid">
+      <!-- Standard Package -->
+      <div class="package-card" data-package="standard">
+        <div class="card-header">
+          <h3>Standard Package</h3>
+          <span class="subtitle">The Reset</span>
+          <p class="clicktoexpand">Click to expand</p>
+        </div>
+        <div class="card-content">
+          <p><strong>For:</strong> Founders stuck in the weeds needing fast clarity, calm, and control.</p>
+          <ul>
+            <li>✔️ Plan for top 3 business headaches</li>
+            <li>✔️ Personal + business aligned goals</li>
+            <li>✔️ Awareness of leadership strengths + blind spots</li>
+            <li>✔️ More control of time + mental bandwidth</li>
+          </ul>
+          <hr>
+          <p><strong>How It Happens:</strong></p>
+          <ul>
+            <li>→ 6 private coaching calls over 3 months</li>
+            <li>→ On-call support for urgent issues</li>
+            <li>→ Mission + values refresh</li>
+            <li>→ Leadership discovery</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Intermediate Package -->
+      <div class="package-card" data-package="intermediate">
+        <div class="card-header">
+          <h3>Intermediate Package</h3>
+          <span class="subtitle">The Rise</span>
+          <p class="clicktoexpand">Click to expand</p>
+        </div>
+        <div class="card-content">
+          <p><strong>For:</strong> Founders ready to stop being the bottleneck and lead growth.</p>
+          <ul>
+            <li>✔️ Path to your ideal future role</li>
+            <li>✔️ Strategic 6-month growth plan</li>
+            <li>✔️ Leadership team confidence</li>
+            <li>✔️ Real succession plan</li>
+          </ul>
+          <hr>
+          <p><strong>How It Happens:</strong></p>
+          <ul>
+            <li>→ 12 private coaching calls over 6 months</li>
+            <li>→ Ongoing on-call support</li>
+            <li>→ Energy Leadership Index Assessment</li>
+            <li>→ Succession + leadership gap analysis</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Premium Package -->
+      <div class="package-card" data-package="premium">
+        <div class="card-header">
+          <h3>Premium Package</h3>
+          <span class="subtitle">The Legacy</span>
+          <p class="clicktoexpand">Click to expand</p>
+        </div>
+        <div class="card-content">
+          <p><strong>For:</strong> Founders ready to build a legacy beyond themselves.</p>
+          <ul>
+            <li>✔️ A leadership team that steps up</li>
+            <li>✔️ Continuity + long-term vision plan</li>
+            <li>✔️ Energizing personal role</li>
+            <li>✔️ Confidence in your business without you</li>
+          </ul>
+          <hr>
+          <p><strong>How It Happens:</strong></p>
+          <ul>
+            <li>→ 24 private coaching calls over 12 months</li>
+            <li>→ On-call support as needed</li>
+            <li>→ Full Energy Leadership Index Assessment</li>
+            <li>→ Coaching + collaboration with team</li>
+            <li>→ Company-wide continuity planning</li>
+            <li>→ Deep role redesign</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <p class="services-note">
+      All packages are customizable. On-site support and public speaking engagements available upon request.
+    </p>    
+  </div>
+</section>
+
+<!-- How We Work Section -->
+<section id="how-we-work" class="section how-we-work">
+  <div class="container">
+    <h2 class="section-title">How We Work Together</h2>
+    <ol class="work-steps">
+      <li data-step="1">
+        <h3>Get the Full Picture</h3>
+        <p>We audit your business and leadership to uncover where time, talent, and trust are breaking down.</p>
+        <span class="example">Example: Spot where you’re the bottleneck, where leadership gaps exist, and where systems need tightening.</span>
+      </li>
+      <li data-step="2">
+        <h3>Align Your Team Around One Vision</h3>
+        <p>No more silos. We get your leaders rowing in the same direction with clarity, urgency, and shared accountability.</p>
+        <span class="example">People know what they own. And what they don’t.</span>
+      </li>
+      <li data-step="3">
+        <h3>Design the Plan</h3>
+        <p>You don’t need theory, you need moves. Together, we build a strategy you can implement now, not someday.</p>
+        <span class="example">Focused on real goals: profitability, performance, and peace of mind.</span>
+      </li>
+      <li data-step="4">
+        <h3>Fix What’s Fuzzy</h3>
+        <p>We clarify roles, responsibilities, and communication so your team can actually execute at a high level.</p>
+        <span class="example">This kills drama and rework.. fast.</span>
+      </li>
+      <li data-step="5">
+        <h3>Grow the Leaders You Need</h3>
+        <p>We coach your team (and you) into stronger decision-makers who solve problems before they hit your desk.</p>
+        <span class="example">Confidence and capability up. Founder dependence down.</span>
+      </li>
+      <li data-step="6">
+        <h3>Optimize for Performance</h3>
+        <p>We cut the clutter, fix inefficiencies, and streamline how your business runs without killing your culture.</p>
+        <span class="example">Think smoother operations, better use of time, and faster execution.</span>
+      </li>
+      <li data-step="7">
+        <h3>Sustain and Scale</h3>
+        <p>You get a rhythm of check-ins, progress tracking, and decision support to keep momentum long after we start.</p>
+        <span class="example">You grow and stay grown.</span>
+      </li>
+      <li data-step="8">
+        <h3>Build for the Next Chapter</h3>
+        <p>We design the business you don’t have to carry forever whether you stay, scale, or step back.</p>
+        <span class="example">Succession planning. Continuity. Real legacy.</span>
+      </li>
+    </ol>
+
+    <div class="optional-addon">
+      <h4>Optional Add-On: Family Business Strategy</h4>
+      <p>60+ years of family business wisdom built into every step. We help founders untangle legacy, next-gen transitions, and personal identity shifts with clarity and care.</p>
+    </div>
+  </div>
+</section>
+
+
+  
+  <!-- Results Section -->
+  <section id="results" class="section results">
+    <div class="container">
+      <h2>What Results Look Like</h2>
+      <ul class="results-list">
+        <li><strong>+31% YoY Growth</strong> for a cybersecurity firm</li>
+        <li><strong>26% Annual Savings</strong> in logistics optimization</li>
+        <li><strong>200+ Leaders</strong> launched into new entrepreneurial ventures</li>
+        <li><strong>Global Clients</strong> in M&A, consulting, coaching & beyond</li>
+      </ul>
+    </div>
+  </section>
+  
+  <!-- Testimonials Section -->
+  <!-- Elevated Testimonials Section -->
+<section id="testimonials" class="section testimonials">
+  <div class="container">
+    <h2 class="section-title">What Clients Say</h2>
+    <div class="testimonials-grid">
+      
+      <div class="testimonial-card">
+        <p class="quote">“Scott tackles sales, management, and logistics issues with alacrity and insight. His leadership helped the company return to profitability and profit.”</p>
+        <div class="author">
+          <span class="name">Scott C. Pyfer</span>
+          <span class="title">Pyfer Law Group</span>
+        </div>
+      </div>
+
+      <div class="testimonial-card">
+        <p class="quote">“Scott combines deep expertise, innovative thinking, and calm under pressure to solve complex challenges. His integrity and resilience make him a top-tier expert, consistently delivering high-quality results.”</p>
+        <div class="author">
+          <span class="name">Nancy May</span>
+          <span class="title">Board Consultant, CareManity</span>
+        </div>
+      </div>
+
+      <div class="testimonial-card">
+        <p class="quote">“Scott is an expert when it comes to business principles and concepts. He is a diligent leader and knows how to get results. He's one of the best business minds I know.”</p>
+        <div class="author">
+          <span class="name">Darrell Proctor</span>
+          <span class="title">Founder, DPro Enterprises</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<section id="faq" class="section faq">
+  <div class="container">
+    <h2>Frequently Asked Questions</h2>
+    <div class="faq-item">
+      <button class="faq-question">How do I know if this coaching is right for me?</button>
+      <div class="faq-answer">
+        <p>If you're a founder or business owner feeling overwhelmed, facing leadership challenges, or looking to scale, this coaching will give you clear strategies and actionable steps to lead more effectively and grow your business with confidence.</p>
+      </div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-question">What’s the difference between your packages?</button>
+      <div class="faq-answer">
+        <p><strong>Standard:</strong> A quick reset with 3 months of tailored coaching to solve top challenges.</p>
+        <p><strong>Intermediate:</strong> A deeper 6-month engagement focused on growth strategies and succession planning.</p>
+        <p><strong>Premium:</strong> A year-long partnership to build a sustainable, high-performing business with a focus on leadership, scalability, and long-term legacy.</p>
+      </div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-question">How quickly will I see results?</button>
+      <div class="faq-answer">
+        <p>You’ll see immediate improvements in leadership clarity and team alignment after just a few sessions. More lasting changes in strategy, team performance, and business systems will evolve over the full coaching term.</p>
+      </div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-question">Will my leadership team be involved?</button>
+      <div class="faq-answer">
+        <p>Yes, especially with the Premium Package. We’ll engage your leadership team to ensure everyone is aligned and working toward common goals, strengthening team cohesion and performance.</p>
+      </div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-question">What makes your coaching different from other business consultants?</button>
+      <div class="faq-answer">
+        <p>With over 60 years of family business experience, I offer a customized, hands-on approach. This isn’t about generic solutions; we’ll work together to solve your specific challenges and craft a plan that fits your unique business needs.</p>
+      </div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-question">How much time will I need to commit?</button>
+      <div class="faq-answer">
+        <p>Coaching sessions are two calls per month, but your active involvement in implementing strategies between sessions is key to seeing rapid results. Expect to dedicate about 2 hours per month for calls and additional time for action steps.</p>
+      </div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-question">What happens if I don’t see the results I expect?</button>
+      <div class="faq-answer">
+        <p>If at any point you feel you're not getting the results we discussed, we’ll adjust the plan to ensure you're getting the value you need. I’m committed to your success and will work closely with you to make sure you reach your goals. I would like to add that, results heavily depend on how well you follow my guidance.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+  
+  <!-- CTA / Book a Call -->
+  <!-- CTA / Book a Call -->
+<section id="cta" class="cta-section">
+  <div class="container">
+    <h2>Let’s Unstick What’s Holding You Back</h2>
+    <p>No fluff. No corporate jargon. Just a straight-up conversation to get to the root of it.</p>
+    <a href="https://calendly.com/gingoldadvisors/initial-conversation?month=2025-04" class="cta-btn">Book Your Free Discovery Call</a>
+  </div>
+</section>
+ 
+
+<!-- Footer -->
+<footer class="footer-bar">
+  <div class="footer-content">
+    <p class="footer-text">&copy; 2025 Gingold Advisors | All Rights Reserved</p>
+    <div class="footer-links">
+      <a href="https://www.linkedin.com/in/scottgingold/" class="footer-link">LinkedIn</a>
+      <a href="https://calendly.com/gingoldadvisors/initial-conversation?month=2025-04" class="footer-link">Book a Call</a>
+      <a href="mailto:scott@gingoldadvisors.com" class="footer-link">Contact</a>
+    </div>
+  </div>
+</footer>
+
+
+
+
+    <script>
+
+function toggleMenu() {
+    const nav = document.querySelector(".nav-links");
+    nav.classList.toggle("active");
+  }
+
+document.querySelectorAll('.nav-links a').forEach(link => {
+    link.addEventListener('click', function(event) {
+        event.preventDefault();
+        const targetId = this.getAttribute('href').substring(1);
+        const targetElement = document.getElementById(targetId);
+        
+        if (targetElement) {
+            window.scrollTo({
+                top: targetElement.offsetTop - 80, // Adjust based on header height
+                behavior: 'smooth'
+            });
+        }
+    });
+});
+
+document.addEventListener("DOMContentLoaded", function () {
+    const navLinks = document.querySelectorAll(".nav-links a");
+
+    navLinks.forEach(link => {
+        link.addEventListener("click", function (e) {
+            e.preventDefault(); 
+            const targetId = this.getAttribute("href").substring(1);
+            const targetSection = document.getElementById(targetId);
+
+            if (targetSection) {
+                // Scroll to section so it's centered on screen
+                const offset = targetSection.offsetTop - (window.innerHeight - targetSection.offsetHeight) / 2;
+                window.scrollTo({ top: offset, behavior: "smooth" });
+
+                // Temporary glow effect
+                targetSection.classList.add("active-section");
+                setTimeout(() => {
+                    targetSection.classList.remove("active-section");
+                }, 1000); // Remove glow after 1s
+            }
+        });
+    });
+
+    function fadeInOnScroll() {
+        const sections = document.querySelectorAll("section");
+        sections.forEach(section => {
+            const rect = section.getBoundingClientRect();
+            if (rect.top < window.innerHeight - 100) {
+                section.classList.add("fade-in");
+            }
+        });
+    }
+
+    window.addEventListener("scroll", fadeInOnScroll);
+    fadeInOnScroll(); 
+});
+
+window.addEventListener("load", () => {
+  document.body.classList.add("fade-in-loaded");
+});
+
+document.querySelectorAll('.package-card').forEach(card => {
+  card.addEventListener('click', () => {
+    const isExpanded = card.classList.contains('expanded');
+
+    // Collapse all cards
+    document.querySelectorAll('.package-card').forEach(c => c.classList.remove('expanded'));
+
+    // If it wasn't already expanded, expand the clicked one
+    if (!isExpanded) {
+      card.classList.add('expanded');
+    }
+  });
+});
+
+document.addEventListener('DOMContentLoaded', function () {
+  const listItems = document.querySelectorAll('.results-list li');
+
+  function checkVisibility() {
+    listItems.forEach(item => {
+      const rect = item.getBoundingClientRect();
+      if (rect.top < window.innerHeight && rect.bottom > 0) {
+        item.classList.add('visible');
+      }
+    });
+  }
+
+  // Initial check
+  checkVisibility();
+
+  // Check when scrolling
+  window.addEventListener('scroll', checkVisibility);
+});
+
+
+document.addEventListener('DOMContentLoaded', () => {
+  const cards = document.querySelectorAll('.testimonial-card');
+
+  function revealOnScroll() {
+    cards.forEach(card => {
+      const rect = card.getBoundingClientRect();
+      if (rect.top < window.innerHeight - 60) {
+        card.classList.add('visible');
+      }
+    });
+  }
+
+  revealOnScroll(); // On load
+  window.addEventListener('scroll', revealOnScroll);
+});
+
+// JavaScript Smooth Scroll
+document.addEventListener('DOMContentLoaded', function() {
+document.querySelectorAll('.nav-links a').forEach(anchor => {
+  anchor.addEventListener('click', function (e) {
+    e.preventDefault(); // Prevent default anchor behavior
+
+    // Scroll to the section
+    document.querySelector(this.getAttribute('href')).scrollIntoView({
+      behavior: 'smooth',
+      block: 'start', // Adjust start of the scroll (top of the section)
+    });
+  });
+});
+});
+
+// JavaScript to handle the toggle effect on FAQ answers
+document.addEventListener('DOMContentLoaded', function() {
+  const faqItems = document.querySelectorAll('.faq-item');
+  
+  faqItems.forEach(item => {
+    const question = item.querySelector('.faq-question');
+    
+    question.addEventListener('click', () => {
+      // Toggle the visibility of the answer
+      const answer = item.querySelector('.faq-answer');
+      item.classList.toggle('open');
+      
+      // Close other answers when one is opened
+      faqItems.forEach(otherItem => {
+        if (otherItem !== item) {
+          otherItem.classList.remove('open');
+        }
+      });
+    });
+  });
+});
+
+
+</script>
+
+
+
+</body>
+</html>
