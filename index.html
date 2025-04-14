@@ -145,26 +145,37 @@ p {
   }
 
   .nav-links {
-    display: none;
-    flex-direction: column;
-    position: absolute;
-    top: 70px;
-    right: 0;
-    width: 100%;
-    background: rgba(45, 71, 24, 0.9);
-    text-align: center;
-    padding: 15px 0;
-  }
+  display: none; /* Hide initially */
+  flex-direction: column;
+  position: absolute;
+  top: 70px;
+  right: 0;
+  width: 100%;
+  background: rgba(45, 71, 24, 0.9); /* Green background initially */
+  text-align: center;
+  padding: 15px 0;
+}
 
-  .nav-links.active {
-    display: flex;
-  }
+.nav-links.active {
+  display: flex;
+  background: #ffffff; /* White background when active */
+  color: #2d4718;      /* Green text color when active */
+}
 
-  .chat-btn {
-    font-size: 14px;
-    padding: 8px 15px;
-    margin-right: 20px;
-  }
+.nav-links li {
+  list-style: none;
+}
+
+.nav-links a {
+  text-decoration: none;
+  color: #2d4718; /* Green text color */
+  font-weight: 500;
+  transition: color 0.3s ease-in-out;
+}
+
+.nav-links a:hover {
+  color: #00448d; /* Blue hover effect */
+}
 }
 
 /* Hero */
